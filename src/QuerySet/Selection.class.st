@@ -29,6 +29,11 @@ self querySet: qs.
 self criteria: description.
 ]
 
+{ #category : #printing }
+Selection >> printString [
+	^ 'Select ' , self criteria printString , ' (' , self querySet printString , ')'
+]
+
 { #category : #accessing }
 Selection >> querySet [
 	^ querySet
@@ -37,4 +42,9 @@ Selection >> querySet [
 { #category : #accessing }
 Selection >> querySet: anObject [
 	querySet := anObject
+]
+
+{ #category : #'as yet unclassified' }
+Selection >> relation [
+	^ self querySet relation
 ]

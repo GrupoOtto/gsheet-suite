@@ -30,8 +30,13 @@ RowDescriptor >> at: aName [
 { #category : #'reflective operations' }
 RowDescriptor >> doesNotUnderstand: aMessage [
 	aMessage hasArguments
-		ifTrue: [ self @ aMessage selector ]
-		ifFalse: [ ^ super doesNotUnderstand: aMessage ]
+		ifFalse: [^ self @ aMessage selector ]
+		ifTrue: [ ^ super doesNotUnderstand: aMessage ]
+]
+
+{ #category : #printing }
+RowDescriptor >> printString [
+	^ self _relation printString
 ]
 
 { #category : #accessing }

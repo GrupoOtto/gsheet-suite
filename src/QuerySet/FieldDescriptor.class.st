@@ -30,6 +30,7 @@ FieldDescriptor >> <= anObject [
 
 { #category : #comparing }
 FieldDescriptor >> = anObject [
+	^ Expresion is: self equal: anObject 
 ]
 
 { #category : #comparing }
@@ -50,12 +51,17 @@ FieldDescriptor >> for: aRow named: aName [
 
 { #category : #comparing }
 FieldDescriptor >> like: anObject [
-	
+	^ Expresion is: self like: anObject 
 ]
 
 { #category : #accessing }
 FieldDescriptor >> name [
 	^ name
+]
+
+{ #category : #printing }
+FieldDescriptor >> printString [
+	^ self row printString, '.' , self name
 ]
 
 { #category : #accessing }

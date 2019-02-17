@@ -16,7 +16,7 @@ GSheet class >> fromDictionary: properties for: aSpreadsheet [
 
 { #category : #running }
 GSheet >> execute: aQuery [
-	^ GSheets new execute: aQuery for: self
+	^ self map: (GSheets new execute: aQuery for: self)
 ]
 
 { #category : #accessing }
@@ -27,6 +27,23 @@ GSheet >> id [
 { #category : #accessing }
 GSheet >> id: anObject [
 	id := anObject
+]
+
+{ #category : #running }
+GSheet >> map: aSheet [
+| rows cols |
+	cols := aSheet at: #cols.
+	rows := aSheet at: #rows.
+	^ GTable new
+		addAll:
+			(rows
+				collect: [ :row | 
+					| dictionary |
+					dictionary := Dictionary new.
+					dictionary at: 'sheet' put: self.
+					cols doWithIndex: [ :c :index | dictionary at: (c at: #label) put: (GField value: ((row at: #c) at: index) format: (c at: #type) for: dictionary) ].
+					dictionary ]);
+		yourself
 ]
 
 { #category : #accessing }

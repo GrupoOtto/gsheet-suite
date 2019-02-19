@@ -47,6 +47,15 @@ GSheet >> map: aSheet [
 ]
 
 { #category : #accessing }
+GSheet >> printOn: aStream [
+	aStream
+		nextPutAll: self title;
+		nextPutAll: ' ('.
+	super printOn: aStream.
+	aStream nextPutAll: ')'
+]
+
+{ #category : #accessing }
 GSheet >> spreadsheet [
 	^ spreadsheet
 ]
